@@ -18,7 +18,7 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
     <application
-        android:name=".MainApp"
+        android:name="com.example.LockPro.MainApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -30,10 +30,10 @@
         android:theme="@style/Theme.AppLock"
         tools:targetApi="31">
         <activity
-            android:name=".ui.LoginActivity"
+            android:name="com.example.LockPro.ui.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.MainActivity"
+            android:name="com.example.LockPro.ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,15 +42,17 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".service.AppLockService" />
+        <service android:name="com.example.LockPro.service.AppLockService" />
 
         <receiver
-            android:name=".service.AppLockService$GetDataBroadcastReceiver"
-            android:exported="false"></receiver>
+            android:name="com.example.LockPro.service.AppLockService$GetDataBroadcastReceiver"
+            android:exported="false"
+            tools:ignore="Instantiatable"></receiver>
         <receiver
-            android:name=".service.AppLockService$ScreenOnOffReceiver"
-            android:exported="true" />
-        <activity android:name="com.example.applock.ui.inapp.PurchaseInAppActivity"
+            android:name="com.example.LockPro.service.AppLockService$ScreenOnOffReceiver"
+            android:exported="true"
+            tools:ignore="Instantiatable" />
+        <activity android:name="com.example.LockPro.ui.inapp.PurchaseInAppActivity"
             android:exported="false"/>
 
     </application>

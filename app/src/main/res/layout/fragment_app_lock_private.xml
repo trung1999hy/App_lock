@@ -35,7 +35,7 @@
             android:textColor="@color/black" />
 
 
-        <com.example.applock.view.patternlockview.PatternLockView
+        <com.example.LockPro.view.patternlockview.PatternLockView
             android:id="@+id/patternLockView"
             android:layout_width="match_parent"
             android:layout_height="350dp"
