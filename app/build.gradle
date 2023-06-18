@@ -4,7 +4,7 @@ plugins {
 }
 apply plugin: 'kotlin-kapt'
 android {
-    namespace 'com.example.applock'
+    namespace 'com.thn.applock'
     compileSdk 33
 
     defaultConfig {
