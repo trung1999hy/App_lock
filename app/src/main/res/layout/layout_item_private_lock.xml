@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/_12dp"
+    android:layout_marginTop="@dimen/_6dp"
+    android:layout_marginEnd="@dimen/_12dp"
+    android:layout_marginBottom="6dp"
+    app:cardCornerRadius="@dimen/_12dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_12dp">
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/logo_app"
+            android:layout_width="36dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:round="12dp" />
+
+        <TextView
+            android:id="@+id/app_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="hhhh"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/logo_app"
+            app:layout_constraintEnd_toStartOf="@+id/lock"
+            app:layout_constraintStart_toEndOf="@+id/logo_app"
+            app:layout_constraintTop_toTopOf="@+id/logo_app" />
+
+        <Switch
+            android:id="@+id/lock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/logo_app"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/logo_app" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

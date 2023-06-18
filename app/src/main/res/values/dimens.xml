@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="pattern_lock_path_width">3dp</dimen>
+    <dimen name="pattern_lock_dot_size">10dp</dimen>
+    <dimen name="pattern_lock_dot_selected_size">24dp</dimen>
+    <dimen name="_50dp">50dp</dimen>
+    <dimen name="_18sp">18sp</dimen>
+    <dimen name="_24sp">24sp</dimen>
+    <dimen name="_12dp">12dp</dimen>
+    <dimen name="_6dp">6dp</dimen>
+    <dimen name="_24dp">24dp</dimen>
+    <dimen name="_32dp">32dp</dimen>
+    <dimen name="_36dp">36dp</dimen>
+    <dimen name="_14sp">14sp</dimen>
+</resources>
