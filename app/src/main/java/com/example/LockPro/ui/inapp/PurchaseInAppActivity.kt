@@ -116,6 +116,10 @@ class PurchaseInAppActivity : AppCompatActivity(), PurchaseInAppAdapter.OnClickL
                 .setProductType(ProductType.INAPP)
                 .build(),
             Product.newBuilder()
+                .setProductId(Constants.KEY_2_COIN)
+                .setProductType(ProductType.INAPP)
+                .build(),
+            Product.newBuilder()
                 .setProductId(Constants.KEY_10_COIN)
                 .setProductType(ProductType.INAPP)
                 .build(),  //Product 2
@@ -218,6 +222,7 @@ class PurchaseInAppActivity : AppCompatActivity(), PurchaseInAppAdapter.OnClickL
 
     private fun getCoinFromKey(coinId: String): Int {
         return when (coinId) {
+            Constants.KEY_5_COIN -> 5
             Constants.KEY_10_COIN -> 100
             Constants.KEY_20_COIN -> 150
             Constants.KEY_50_COIN -> 300

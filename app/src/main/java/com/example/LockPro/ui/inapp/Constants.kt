@@ -1,6 +1,7 @@
 package com.example.LockPro.ui.inapp
 
 object Constants {
+    const val KEY_2_COIN = "in_key_2" // 5 coin
     const val KEY_5_COIN = "key_50" // 5 coin
     const val KEY_10_COIN = "key_100" // 100 coin
     const val KEY_20_COIN = "key_150" // 150 coin
