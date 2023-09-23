@@ -2,16 +2,19 @@ package com.example.LockPro.ui.list_app_lock_private
 
 import android.app.AlertDialog
 import android.app.AppOpsManager
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.LockPro.MainApp
 import com.example.LockPro.base.PermissionActivity
+import com.example.LockPro.local.DataController
 import com.example.LockPro.model.AppLock
 import com.example.LockPro.ui.MainActivity
 import com.example.LockPro.ui.app_lock_private.AppLockPrivateFragment
@@ -39,7 +42,7 @@ class ListAppLockPrivateFragment : BaseFragment<FragmentListAppLockPrivateBindin
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
-        adapter = AppLockAdapter {applock ->
+        adapter = AppLockAdapter { applock ->
             if (applock.pass.isNullOrEmpty()) {
                 (activity as PermissionActivity<*>).let {
                     it.checkPermission() {
@@ -83,18 +86,20 @@ class ListAppLockPrivateFragment : BaseFragment<FragmentListAppLockPrivateBindin
             "Đồng ý"
         ) { p0, p1 ->
 
-            MainApp.newInstance().preference?.apply {
-                if (getValueCoin() ?: 0 > 2) {
-                    setValueCoin(getValueCoin()?.minus(2) ?: 0)
+            MainApp.newInstance()?.preference?.apply {
+                if (getValueCoin()!! > 1) {
+                    setValueCoin(getValueCoin()!! - 2)
                     Toast.makeText(
                         requireContext(),
                         "Đã thêm  thành công và trù 2 vàng",
                         Toast.LENGTH_SHORT
 
                     ).show()
-                    (activity as MainActivity).getCoin()
+                    updateGold()
+
                     (activity as MainActivity).let {
                         it.setAppLock(appLock)
+                        it.getData()
                         it.openFragment(
                             this@ListAppLockPrivateFragment,
                             R.id.fragment_container, AppLockPrivateFragment::class.java, null, true
@@ -150,5 +155,11 @@ class ListAppLockPrivateFragment : BaseFragment<FragmentListAppLockPrivateBindin
             requireActivity().sendBroadcast(intent)
             adapter?.submitList(it)
         }
+    }
+
+    private fun updateGold() {
+        val dataController = DataController(MainApp.newInstance()?.deviceId ?: "")
+        Log.d(TAG, "updateGold: ${MainApp.newInstance()?.preference?.getValueCoin()}")
+        dataController.updateDocument(MainApp.newInstance()?.preference?.getValueCoin() ?: 0)
     }
 }

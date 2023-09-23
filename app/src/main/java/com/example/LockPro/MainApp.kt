@@ -1,6 +1,7 @@
 package com.example.LockPro
 
 import android.app.Application
+import android.provider.Settings
 import com.example.LockPro.local.Preferences
 
 class MainApp : Application() {
@@ -12,7 +13,7 @@ class MainApp : Application() {
         preference = Preferences.getInstance(this)
         if (preference?.firstInstall == false) {
             preference?.firstInstall = true
-            preference?.setValueCoin(5)
+            preference?.setValueCoin(30)
         }
 
     }
@@ -26,4 +27,6 @@ class MainApp : Application() {
             return instance!!
         }
     }
+    val deviceId: String
+        get() = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
 }

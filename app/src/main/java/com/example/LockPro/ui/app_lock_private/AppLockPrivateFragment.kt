@@ -100,4 +100,5 @@ class AppLockPrivateFragment : BaseFragment<FragmentAppLockPrivateBinding>() {
 
     }
 
+
 }

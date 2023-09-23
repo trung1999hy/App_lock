@@ -3,9 +3,12 @@ package com.example.LockPro.ui
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import com.example.LockPro.MainApp
 import com.example.LockPro.base.PermissionActivity
+import com.example.LockPro.local.DataController
 import com.example.LockPro.model.AppLock
+import com.example.LockPro.model.User
 import com.example.LockPro.service.AppLockService
 import com.example.LockPro.ui.inapp.PurchaseInAppActivity
 import com.example.LockPro.ui.lock_app.LockFragment
@@ -27,14 +30,44 @@ class MainActivity : PermissionActivity<ActivityMainBinding>() {
         val lockFragment = LockFragment.newInstance(false)
         openFragment(null, R.id.fragment_container, lockFragment.javaClass, null, false)
         setVisibility(View.GONE)
-        getCoin()
+        getData()
         binding.coin.click {
             startActivity(Intent(this, PurchaseInAppActivity::class.java))
         }
     }
 
-    fun getCoin() {
-        binding.coin.text = MainApp.newInstance()?.preference?.getValueCoin().toString()
+
+
+    private fun setDataBaseGold() {
+        val dataController = DataController(MainApp.newInstance()?.deviceId ?: "")
+        dataController.writeNewUser(MainApp.newInstance()?.deviceId ?: "", 30)
+    }
+
+    fun getData() {
+        val dataController = DataController(MainApp.newInstance()?.deviceId ?: "")
+        dataController.setOnListenerFirebase(object : DataController.OnListenerFirebase {
+            override fun onCompleteGetUser(user: User?) {
+                user?.let {
+                    MainApp.newInstance()?.preference?.setValueCoin(user.coin)
+                    binding.coin.text = String.format(
+                        resources.getString(R.string.amount_gold),
+                        MainApp.newInstance()?.preference?.getValueCoin()
+                    )
+                } ?: kotlin.run {
+                    setDataBaseGold()
+                }
+            }
+
+            override fun onSuccess() {
+
+            }
+
+            override fun onFailure() {
+                Toast.makeText(this@MainActivity, "Có lỗi kết nối đến server!", Toast.LENGTH_LONG)
+                    .show()
+            }
+        })
+        dataController.user
     }
 
     fun setAppLock(appLock: AppLock) {

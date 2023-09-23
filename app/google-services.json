@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "928661115988",
+    "project_id": "applockpro-c6c84",
+    "storage_bucket": "applockpro-c6c84.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:928661115988:android:21803e4354f083e58449c1",
+        "android_client_info": {
+          "package_name": "com.thn.applock"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvrOz9G-WFkk3LSVeptAOZ2kcN3fhsy5E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

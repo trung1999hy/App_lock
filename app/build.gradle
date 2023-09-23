@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 apply plugin: 'kotlin-kapt'
 android {
@@ -45,6 +47,10 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
     implementation 'com.google.firebase:firebase-crashlytics-buildtools:2.9.5'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.8.1'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.4.3'
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.3.0'
+
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
