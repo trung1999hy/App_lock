@@ -17,12 +17,20 @@
         android:layout_marginBottom="@dimen/_12dp"
         app:cardCornerRadius="@dimen/_12dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="start|center"
             android:background="?attr/selectableItemBackground"
             android:padding="@dimen/_12dp">
 
+            <ImageView
+                android:layout_width="@dimen/_36dp"
+                android:layout_height="24dp"
+                android:src="@drawable/reset_password"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -31,18 +39,16 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14sp"
                 android:textStyle="bold"
+                android:layout_weight="1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:layout_width="@dimen/_36dp"
-                android:layout_height="@dimen/_36dp"
-                android:src="@drawable/reset_password"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_chevron_right"/>
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
@@ -56,24 +62,12 @@
         android:layout_marginBottom="@dimen/_12dp"
         app:cardCornerRadius="@dimen/_12dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="start|center"
             android:background="?attr/selectableItemBackground"
             android:padding="@dimen/_12dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:text="Lock each application separately"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_14sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="@dimen/_36dp"
@@ -82,8 +76,24 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="Lock each application separately"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sp"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_chevron_right"/>
 
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -96,33 +106,37 @@
         android:layout_marginBottom="@dimen/_12dp"
         app:cardCornerRadius="@dimen/_12dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
+            android:gravity="start|center"
             android:background="?attr/selectableItemBackground"
             android:padding="@dimen/_12dp">
-
+            <ImageView
+                android:layout_width="@dimen/_36dp"
+                android:layout_height="@dimen/_36dp"
+                android:src="@drawable/shop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:text="Store"
             android:textColor="@color/black"
             android:textSize="@dimen/_14sp"
             android:textStyle="bold"
+            android:layout_weight="1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-        <ImageView
-            android:layout_width="@dimen/_36dp"
-            android:layout_height="@dimen/_36dp"
-            android:src="@drawable/shop"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_chevron_right"/>
 
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -133,16 +147,15 @@
         android:layout_marginEnd="@dimen/_12dp"
         android:layout_marginBottom="@dimen/_12dp"
         app:cardCornerRadius="@dimen/_12dp">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
+            android:gravity="start|center"
             android:background="?attr/selectableItemBackground"
             android:padding="@dimen/_12dp">
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="@dimen/_24dp"
@@ -163,7 +176,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
@@ -176,15 +189,15 @@
         android:layout_marginBottom="@dimen/_12dp"
         app:cardCornerRadius="@dimen/_12dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
+            android:gravity="start|center"
             android:background="?attr/selectableItemBackground"
             android:padding="@dimen/_12dp">
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="129dp"
@@ -205,7 +218,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
