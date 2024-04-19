@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.app_list.AppListFragment">
+    android:orientation="vertical">
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -15,6 +14,24 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         />
 
+    <LinearLayout
+        android:id="@+id/layout_no_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/cuate"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="You have locked the application"/>
+    </LinearLayout>
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"

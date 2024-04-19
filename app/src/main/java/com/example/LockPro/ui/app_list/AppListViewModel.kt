@@ -70,15 +70,26 @@ class AppListViewModel() : BaseViewModel() {
         }
     }
 
-    fun addAppLock(appLock: AppLock) {
+    fun addAppLock(appLock: AppLock , callback:()-> Unit) {
         scope.launch(Dispatchers.IO) {
             async {
                 repository.update(appLock)
+                callback.invoke()
             }.await()
 
         }
     }
+    fun addAllAppLock(callback: () -> Unit){
+        scope.launch(Dispatchers.IO) {
+            async {
+                repository.getAllService().forEach {
+                    repository.update(it.apply { isLock = true })
+                }
+callback.invoke()
+            }.await()
 
+        }
+    }
 
     fun getAppIconByPackageName(context: Context, packageName: String?): Drawable? {
         try {

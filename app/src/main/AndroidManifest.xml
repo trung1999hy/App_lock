@@ -26,7 +26,7 @@
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher_iconapp"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_iconapp"
+        android:roundIcon="@mipmap/ic_launcher_iconapp_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppLock"
         tools:targetApi="31">
@@ -43,7 +43,9 @@
             </intent-filter>
         </activity>
 
-        <service android:name="com.example.LockPro.service.AppLockService" />
+        <service
+            android:name="com.example.LockPro.service.AppLockService"
+            android:foregroundServiceType="dataSync" />
 
         <receiver
             android:name="com.example.LockPro.service.AppLockService$GetDataBroadcastReceiver"
@@ -53,7 +55,9 @@
             android:name="com.example.LockPro.service.AppLockService$ScreenOnOffReceiver"
             android:exported="true"
             tools:ignore="Instantiatable" />
-        <activity android:name="com.example.LockPro.ui.inapp.PurchaseInAppActivity"
+
+        <activity
+            android:name="com.example.LockPro.ui.inapp.PurchaseInAppActivity"
             android:exported="false"/>
 
     </application>

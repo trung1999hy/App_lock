@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.example.LockPro.base.PermissionActivity
+import com.example.LockPro.model.AppLock
 import com.example.LockPro.ui.main.MainFragment
 import com.example.LockPro.view.patternlockview.widget.AppLockItemAnimator
 import com.example.login.base.BaseFragment
@@ -38,7 +39,7 @@ class AppLockFragment : BaseFragment<FragmentAppLockBinding>() {
 
 
     override fun initView(savedInstanceState: Bundle?) {
-        appListAdapter = AppLockAdapter() { appLock ->
+        appListAdapter = AppLockAdapter({ appLock ->
             (activity as PermissionActivity<*>).let {
                 it.checkPermission() {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Settings.canDrawOverlays(
@@ -57,7 +58,26 @@ class AppLockFragment : BaseFragment<FragmentAppLockBinding>() {
                     ).show()
                 }
             }
-        }
+        },{
+            (activity as PermissionActivity<*>).let {
+                it.checkPermission() {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Settings.canDrawOverlays(
+                            context
+                        ) && isUsageAccessGranted(requireContext())
+                    ) {
+                        viewModel.removeAllAppLock() {
+                            val intent = Intent("getData")
+                            LocalBroadcastManager.getInstance(activity as PermissionActivity<*>)
+                                .sendBroadcast(intent)
+                        }
+                    } else Toast.makeText(
+                        requireContext(),
+                        "Lỗi do cung cấp thiếu  quyền vui lòng cấp quyền để app hoạt đông",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+        })
 
         val itemAnimator = AppLockItemAnimator()
         itemAnimator.setLocked(true)
@@ -92,20 +112,22 @@ class AppLockFragment : BaseFragment<FragmentAppLockBinding>() {
         }
 
         viewModel.getAll().observe(viewLifecycleOwner) {
-            var listData = it.filter { it.isLock }
-            if (listData.isNotEmpty()) {
+            var listData = it.filter { it.isLock }.toMutableList()
                 listData.forEach { item ->
                     item.drawable =
                         viewModel.getAppIconByPackageName(requireContext(), item.packetName)
                 }
-                listData = listData.sortedBy { it.appName }
+                listData = listData.sortedBy { it.appName }.toMutableList()
+                if (listData.size > 0) {
+                    listData.add(
+                        0,
+                        AppLock(
+                            appName = "Mở khoá tất cả"
+                        )
+                    )
+                }
                 appListAdapter.setData(listData)
-                binding.title.visibility = View.GONE
-            } else {
-                appListAdapter.setData(listOf())
-                binding.title.visibility = View.VISIBLE
-            }
-
+            binding.layoutNoData.visibility = if (listData.isEmpty())View.VISIBLE else View.GONE
         }
     }
 }

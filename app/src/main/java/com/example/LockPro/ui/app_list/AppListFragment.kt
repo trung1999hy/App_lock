@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.example.LockPro.base.PermissionActivity
 import com.example.LockPro.local.Preferences
+import com.example.LockPro.model.AppLock
 import com.example.LockPro.ui.main.MainFragment
 import com.example.LockPro.view.patternlockview.widget.AppLockItemAnimator
 import com.example.login.base.BaseFragment
@@ -48,14 +49,18 @@ class AppListFragment : BaseFragment<FragmentAppListBinding>() {
 
     override fun initView(savedInstanceState: Bundle?) {
         viewModel = ViewModelProvider(this@AppListFragment).get(AppListViewModel::class.java)
-        appListAdapter = AppListAdapter() { appLock ->
+        appListAdapter = AppListAdapter({ appLock ->
                 (activity as PermissionActivity<*>?)?.let {
                     it.checkPermission() {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Settings.canDrawOverlays(
                                 context
                             ) && isUsageAccessGranted(requireContext())
                         ) {
-                            viewModel.addAppLock(appLock.apply { isLock = true })
+                            viewModel.addAppLock(appLock.apply { isLock = true }){
+                                val intent = Intent("getData")
+                                LocalBroadcastManager.getInstance(activity as PermissionActivity<*>)
+                                    .sendBroadcast(intent)
+                            }
                         } else Toast.makeText(
                             requireContext(),
                             "Lỗi do cung cấp thiếu  quyền vui lòng cấp quyền để app hoạt đông ",
@@ -64,7 +69,26 @@ class AppListFragment : BaseFragment<FragmentAppListBinding>() {
                     }
 
             }
-        }
+        },{
+            (activity as PermissionActivity<*>?)?.let {
+                it.checkPermission() {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Settings.canDrawOverlays(
+                            context
+                        ) && isUsageAccessGranted(requireContext())
+                    ) {
+                        viewModel.addAllAppLock(){
+                            val intent = Intent("getData")
+                            LocalBroadcastManager.getInstance(activity as PermissionActivity<*>)
+                                .sendBroadcast(intent)
+                        }
+                    } else Toast.makeText(
+                        requireContext(),
+                        "Lỗi do cung cấp thiếu  quyền vui lòng cấp quyền để app hoạt đông ",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+        })
         if (preferences.getBoolean(FIRST_INSTALL) == false) {
             preferences.setBoolean(FIRST_INSTALL, true)
             preferences.setBoolean(ENABLE_APP, true)
@@ -110,11 +134,16 @@ class AppListFragment : BaseFragment<FragmentAppListBinding>() {
         viewModel.getAll().observe(viewLifecycleOwner) {
             val intent = Intent("getData")
             activity?.let { it1 -> LocalBroadcastManager.getInstance(it1).sendBroadcast(intent) }
-            val listData = it.filter { !it.isLock }
+            var listData = it.filter { !it.isLock }.toMutableList()
             listData.forEach {
                 it.drawable = viewModel.getAppIconByPackageName(requireContext(), it.packetName)
             }
-            appListAdapter.setData(listData.sortedBy { it.appName })
+            listData = listData.sortedBy { it.appName }.toMutableList()
+            if (listData.size > 0) {
+                listData.add(0, AppLock(appName = "Khoá tất cả"))
+            }
+            appListAdapter.setData(listData)
+            binding.layoutNoData.visibility = if (listData.isEmpty())View.VISIBLE else View.GONE
 
 
         }

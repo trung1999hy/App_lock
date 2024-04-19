@@ -12,17 +12,16 @@ import java.io.Serializable
 data class AppLock(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @ColumnInfo(name = "packetName")
-    val packetName: String?,
+    val packetName: String? = "",
     @ColumnInfo(name = "pass")
-    var pass: String?,
+    var pass: String? = "",
     @ColumnInfo(name = "lock")
     var isLock: Boolean = false,
     @ColumnInfo(name = "appName")
-    var appName: String?
-
-
+    var appName: String? = ""
     ): Serializable {
-   @Ignore var drawable: Drawable? = null
+
+    @Ignore var drawable: Drawable? = null
 }
 
 

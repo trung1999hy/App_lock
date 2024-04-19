@@ -36,6 +36,14 @@ class AppLockViewModel : BaseViewModel() {
             }
         }
     }
+    fun removeAllAppLock(onCallBack: () -> Unit){
+        scope.launch(Dispatchers.IO) {
+            repository.getAllService().forEach {
+                repository.update(it.apply { isLock = false })
+            }
+            onCallBack.invoke()
+        }
+    }
 
     fun getAppIconByPackageName(context: Context, packageName: String?): Drawable? {
         try {

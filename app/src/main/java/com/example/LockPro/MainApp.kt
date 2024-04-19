@@ -15,12 +15,11 @@ class MainApp : Application() {
             preference?.firstInstall = true
             preference?.setValueCoin(30)
         }
-
     }
 
     companion object {
         var instance: MainApp? = null
-        fun newInstance(): MainApp {
+        fun newInstance(): MainApp {3
             if (instance == null) {
                 instance = MainApp()
             }

@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:text="Đổi mật khẩu"
+                android:text="Change password"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14sp"
                 android:textStyle="bold"
@@ -66,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:text="Khóa riêng từng ứng dụng"
+                android:text="Lock each application separately"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14sp"
                 android:textStyle="bold"
@@ -75,6 +75,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
+                android:id="@+id/imageView"
                 android:layout_width="@dimen/_36dp"
                 android:layout_height="@dimen/_36dp"
                 android:src="@drawable/locked"
@@ -102,25 +103,25 @@
             android:background="?attr/selectableItemBackground"
             android:padding="@dimen/_12dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:text="Cửa hàng"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_14sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-            <ImageView
-                android:layout_width="@dimen/_36dp"
-                android:layout_height="@dimen/_36dp"
-                android:src="@drawable/shop"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="Store"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:layout_width="@dimen/_36dp"
+            android:layout_height="@dimen/_36dp"
+            android:src="@drawable/shop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 
@@ -145,7 +146,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="@dimen/_24dp"
-                android:text="Bật hoặc tắt dùng vân tay hoặc khuôn mặt để mở khóa "
+                android:text="Enable or disable fingerprint or face unlock"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14sp"
                 android:textStyle="bold"
@@ -183,11 +184,11 @@
             android:padding="@dimen/_12dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="129dp"
-                android:text="Bật hoặc tắt khóa ứng dụng"
+                android:text="Enable or disable application lock"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14sp"
                 android:textStyle="bold"
@@ -227,7 +228,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:text="Thông tin phiên bản"
+                android:text="Version information"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14sp"
                 android:textStyle="bold"

@@ -135,8 +135,7 @@ class LockFragment : BaseFragment<FragmentLockBinding>() {
                         binding.titlePass.text = "Vui Lòng vẽ lại mật khẩu ?"
                     }
             }
-
-
+            
             override fun onCleared() {
 
             }

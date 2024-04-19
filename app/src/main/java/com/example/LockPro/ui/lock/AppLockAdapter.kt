@@ -1,6 +1,9 @@
 package com.example.LockPro.ui.lock
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -11,7 +14,7 @@ import com.thn.applock.R
 import com.thn.applock.databinding.LayoutItemAppBinding
 
 
-class AppLockAdapter(val itemOnClick: (AppLock) -> Unit) :
+class AppLockAdapter(val itemOnClick: (AppLock) -> Unit, val itemClickAll: () -> Unit) :
     ListAdapter<AppLock, AppLockAdapter.ViewHolder>(object : DiffUtil.ItemCallback<AppLock>() {
         override fun areItemsTheSame(oldItem: AppLock, newItem: AppLock): Boolean {
             return oldItem.id == newItem.id
@@ -28,14 +31,31 @@ class AppLockAdapter(val itemOnClick: (AppLock) -> Unit) :
     ) :
         RecyclerView.ViewHolder(layoutItemAppBinding.root) {
         fun bind(appLock: AppLock) {
+
+
             layoutItemAppBinding.root.setOnClickListener {
-                itemOnClick.invoke(appLock)
+                if (adapterPosition == 0) {
+                    itemClickAll.invoke()
+                    Log.e("position", "position: : 0000000000")
+                } else
+                    itemOnClick.invoke(appLock)
             }
+
             layoutItemAppBinding.lock.setImageResource(R.drawable.lock)
             layoutItemAppBinding.appName.text = appLock.appName
             Glide.with(layoutItemAppBinding.root).load(appLock.drawable)
                 .into(layoutItemAppBinding.logoApp)
+            if (appLock.packetName.isNullOrEmpty()) {
+                layoutItemAppBinding.logoApp.visibility = View.GONE
+
+            } else {
+                layoutItemAppBinding.logoApp.visibility = View.VISIBLE
+
+
+            }
+
         }
+
     }
 
 

@@ -17,4 +17,7 @@
         <attr name="dotAnimationDuration" format="integer"/>
         <attr name="pathEndAnimationDuration" format="integer"/>
     </declare-styleable>
+    <style name="MyTabLayout"  parent="Widget.Material3.TabLayout">
+        <item name="textAllCaps">false</item>
+    </style>
 </resources>

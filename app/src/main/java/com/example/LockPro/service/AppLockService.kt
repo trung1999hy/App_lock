@@ -229,8 +229,9 @@ open class AppLockService : Service() {
         //
         appLockTask = AppLockTask(this) { pkg ->
             if (preferences?.getBoolean(ENABLE_APP) == true) {
+
                 if (lastForegroundAppPackage == pkg) {
-                    return@AppLockTask
+
                 }
                 if (isLaunchIntent(this.applicationContext, packageName) && checkLockedApp(pkg)) {
                     if (checkLockedApp(pkg) && !isShowActivity && BuildConfig.APPLICATION_ID != pkg) {

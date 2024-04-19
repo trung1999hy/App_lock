@@ -16,7 +16,10 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize" />
+        android:layout_height="?actionBarSize"
+        app:tabIndicatorColor="@color/purple_200"
+        app:tabSelectedTextColor="@color/purple_200"
+        />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
